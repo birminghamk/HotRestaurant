@@ -61,4 +61,26 @@
     </div>
   </div>
 </body>
+
+<script type="text/javascript">
+    // Question: What does this code do?
+    $("#homeButton").on("click", function(event) {
+      event.preventDefault();
+      var newReservation = {
+        name: $("#resName").val().trim(),
+        phoneNumber: $("#resPhone").val().trim(),
+        email: $("#resEmail").val().trim(),
+        uniqueID: $("#resID").val().trim()
+      };
+
+      // Question: What does this code do??
+      $.post("/api/tables", newReservation)
+      .then(function(data) {
+        console.log(data);
+        alert("Adding reservation...");
+      });
+    });
+  </script>
+
+
 </html>
