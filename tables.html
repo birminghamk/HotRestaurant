@@ -10,9 +10,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!-- <link rel="stylesheet" href="css/style.css"> -->
+    
   </head>
 
 <body>
+  <style type="text/css"> 
+          
+            .well {
+              color: black;
+            }
+          
+  </style>
 
   <div class="container">
     <div class="jumbotron">
@@ -35,21 +43,9 @@
         <div class="panel panel-primary" id="entryFormPanel">
           <div class="panel-heading">
             <h3 class="panel-title">Current Reservations</h3>
-            	<div class="row tablesReserved">
-            		<div class = "well" id="tableWell-01">
-            			<h2><span class="label label-primary">1</span> | Reservation Name</h2>
-            		</div>
-            		<div class = "well" id="tableWell-02">
-            			<h2><span class="label label-primary">2</span> | Reservation Name</h2>
-            		</div>
-            		<div class = "well" id="tableWell-03">
-            			<h2><span class="label label-primary">3</span> | Reservation Name</h2>
-            		</div>
-            		<div class = "well" id="tableWell-04">
-            			<h2><span class="label label-primary">4</span> | Reservation Name</h2>
-            		</div>
-            		<div class = "well" id="tableWell-05">
-            			<h2><span class="label label-primary">5</span> | Reservation Name</h2>
+            	<div class="row" id="tablesReserved">
+            		<div class = "well" id="tableWell-1">
+            			
             		</div>
             	</div>
             <br>
@@ -62,21 +58,9 @@
         <div class="panel panel-primary" id="entryFormPanel">
           <div class="panel-heading">
             <h3 class="panel-title">Waitlist</h3>
-            	<div class="row waitlist">
-            		<div class = "well" id="tableWell-01">
-            			<h2><span class="label label-primary">1</span> | Reservation Name</h2>
-            		</div>
-            		<div class = "well" id="tableWell-02">
-            			<h2><span class="label label-primary">2</span> | Reservation Name</h2>
-            		</div>
-            		<div class = "well" id="tableWell-03">
-            			<h2><span class="label label-primary">3</span> | Reservation Name</h2>
-            		</div>
-            		<div class = "well" id="tableWell-04">
-            			<h2><span class="label label-primary">4</span> | Reservation Name</h2>
-            		</div>
-            		<div class = "well" id="tableWell-05">
-            			<h2><span class="label label-primary">5</span> | Reservation Name</h2>
+            	<div class="row" id="waitlist">
+            		<div class = "well" id="tableWell-1">
+            			
             		</div>
             	</div>
             <br>
@@ -123,6 +107,7 @@
 
         // Loop through and display each of the customers
         for (var i = 0; i < tableData.length; i++) {
+          console.log(tableData[i].routeName)
 
           // Create the HTML Well (Section) and Add the table content for each reserved table
           var tableSection = $("<div>");
