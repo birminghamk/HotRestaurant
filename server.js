@@ -23,6 +23,13 @@ var reservations = [
     email: "smith@gmail.com",
     uniqueID: "TheSmiths"
   },
+  {
+    routeName: "jones",
+    name: "Mr. Jones",
+    phoneNumber: 3035898163,
+    email: "mrjones@gmail.com",
+    uniqueID: "TheJoneses"
+  }
 ];
 
 var waitlist = [
@@ -32,6 +39,13 @@ var waitlist = [
     phoneNumber: 3038574635,
     email: "delcore@gmail.com",
     uniqueID: "Delcore"
+  },
+    {
+    routeName: "katie",
+    name: "Katie",
+    phoneNumber: 3038574635,
+    email: "katie@gmail.com",
+    uniqueID: "Katie"
   }
 ];
 
@@ -52,51 +66,16 @@ app.get("/reserve", function(req, res) {
 });
 
 
-// Search for Specific Character (or all characters) - provides JSON
-app.get("/api/:newReservation?", function(req, res) {
 
-      if (reservations.length < 5) {
-          reservations.push(req.body);
-          res.json(true);
-      } else {
-          waitlist.push(req.body);
-          res.json(false);
-      } 
-
-});
 
 
 // Create New Characters - takes in JSON input
-app.post("/api/tables", function(req, res) {
-  // req.body hosts is equal to the JSON post sent from the user
-  // This works because of our body-parser middleware
-  var newreservations = req.body;
-  // Using a RegEx Pattern to remove spaces from newCharacter
-  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newreservations.routeName = newreservations.name.replace(/\s+/g, "").toLowerCase();
-
-  console.log(newreservations);
-
-  reservations.push(newreservations);
-
-  // res.json(newreservations);
-  res.json(reservations)
+app.get("/api/tables", function(req, res) {
+  return res.json(reservations)
 });
 
-app.post("/api/waitlist", function(req, res) {
-  // req.body hosts is equal to the JSON post sent from the user
-  // This works because of our body-parser middleware
-  var waitingParties = req.body;
-  // Using a RegEx Pattern to remove spaces from newCharacter
-  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  waitingParties.routeName = waitingParties.name.replace(/\s+/g, "").toLowerCase();
-
-  console.log(waitingParties);
-
-  waitlist.push(waitingParties);
-
-  // res.json(waitingParties);
-  res.json(waitlist)
+app.get("/api/waitlist", function(req, res) {
+  return res.json(waitlist)
 });
 
 app.post("/api/clear", function() {
@@ -108,6 +87,19 @@ app.post("/api/clear", function() {
 
 
 })
+
+// Search for Specific Character (or all characters) - provides JSON
+app.post("/api/:newReservation?", function(req, res) {
+
+      if (reservations.length < 5) {
+          reservations.push(req.body);
+          return res.json(reservations);
+      } else {
+          waitlist.push(req.body);
+          return res.json(waitlist);
+      } 
+
+});
 // Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function() {
