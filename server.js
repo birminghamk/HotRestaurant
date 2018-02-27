@@ -39,7 +39,7 @@ var waitlist = [
 // =============================================================
 
 // Basic route that sends the user first to the AJAX Page
-app.get("*", function(req, res) {
+app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "home.html"));
 });
 
@@ -47,7 +47,7 @@ app.get("/tables", function(req, res) {
   res.sendFile(path.join(__dirname, "tables.html"));
 });
 
-app.get("/waitlist", function(req, res) {
+app.get("/reserve", function(req, res) {
   res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
@@ -62,7 +62,6 @@ app.get("/api/:newReservation?", function(req, res) {
           waitlist.push(req.body);
           res.json(false);
       } 
-    }
 
 });
 
@@ -80,7 +79,8 @@ app.post("/api/tables", function(req, res) {
 
   reservations.push(newreservations);
 
-  res.json(newreservations);
+  // res.json(newreservations);
+  res.json(reservations)
 });
 
 app.post("/api/waitlist", function(req, res) {
@@ -95,7 +95,8 @@ app.post("/api/waitlist", function(req, res) {
 
   waitlist.push(waitingParties);
 
-  res.json(waitingParties);
+  // res.json(waitingParties);
+  res.json(waitlist)
 });
 
 app.post("/api/clear", function() {
@@ -112,3 +113,4 @@ app.post("/api/clear", function() {
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
+
