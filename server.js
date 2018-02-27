@@ -69,6 +69,7 @@ app.get("/reserve", function(req, res) {
 
 
 
+
 // Create New Characters - takes in JSON input
 app.get("/api/tables", function(req, res) {
   return res.json(reservations)
@@ -76,6 +77,8 @@ app.get("/api/tables", function(req, res) {
 
 app.get("/api/waitlist", function(req, res) {
   return res.json(waitlist)
+
+
 });
 
 app.post("/api/clear", function() {
@@ -84,18 +87,17 @@ app.post("/api/clear", function() {
     waitlist = [];
 
     console.log(reservations);
-
-
 })
 
 // Search for Specific Character (or all characters) - provides JSON
 app.post("/api/:newReservation?", function(req, res) {
-
+      var newReservation = req.body;
+      newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
       if (reservations.length < 5) {
-          reservations.push(req.body);
+          reservations.push(newReservation);
           return res.json(reservations);
       } else {
-          waitlist.push(req.body);
+          waitlist.push(newReservation);
           return res.json(waitlist);
       } 
 
