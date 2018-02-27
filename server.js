@@ -62,7 +62,7 @@ app.get("/api/:newReservation?", function(req, res) {
           waitlist.push(req.body);
           res.json(false);
       } 
-    }
+
 
 });
 
@@ -81,6 +81,7 @@ app.post("/api/tables", function(req, res) {
   reservations.push(newreservations);
 
   res.json(newreservations);
+  res.json(reservations);
 });
 
 app.post("/api/waitlist", function(req, res) {
@@ -96,6 +97,7 @@ app.post("/api/waitlist", function(req, res) {
   waitlist.push(waitingParties);
 
   res.json(waitingParties);
+  res.json(waitlist);
 });
 
 app.post("/api/clear", function() {
